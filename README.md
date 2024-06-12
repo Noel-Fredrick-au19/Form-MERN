@@ -1,7 +1,3 @@
-Sure, here's a detailed `README.md` that you can use for your project:
-
----
-
 # MERN Stack CRUD Application with Drag-and-Drop Functionality
 
 This project is a MERN stack application that implements CRUD (Create, Read, Update, Delete) operations with drag-and-drop functionality. It includes user authentication and authorization using JWT tokens.
