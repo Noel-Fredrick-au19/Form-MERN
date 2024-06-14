@@ -52,8 +52,8 @@ This project is a MERN stack application that implements CRUD (Create, Read, Upd
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Noel-Fredrick-au19/Form-MERN.git
+cd Form-MERN
 ```
 
 ### Backend Setup
