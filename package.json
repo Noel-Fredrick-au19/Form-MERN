@@ -1,0 +1,9 @@
+{
+    "name": "mern-app",
+    "private": true,
+    "workspaces": [
+      "frontend",
+      "backend"
+    ]
+  }
+  
