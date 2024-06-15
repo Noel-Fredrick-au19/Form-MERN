@@ -13,8 +13,13 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors());
-app.use(bodyParser.json());
+// app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+}));
+// app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/api', itemRoutes);
 app.use('/api/auth', authRoutes);
