@@ -46,10 +46,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
+  // const login = async (email: string, password: string) => {
+  //   const response = await axios.post(
+  //     `${process.env.REACT_APP_API_URL}/api/auth/login`,
+  //     { email, password }
+  //   );
+  //   const { token } = response.data;
+  //   localStorage.setItem("token", token);
+  //   const decoded = jwtDecode<User>(token);
+  //   setUser(decoded);
+  // };
+
   const login = async (email: string, password: string) => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/auth/login`,
-      { email, password }
+      { email, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
     );
     const { token } = response.data;
     localStorage.setItem("token", token);
@@ -60,13 +77,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signup = async (username: string, email: string, password: string) => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/auth/register`,
-      { username, email, password }
+      { username, email, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
     );
     const { token } = response.data;
     localStorage.setItem("token", token);
     const decoded = jwtDecode<User>(token);
     setUser(decoded);
   };
+
+  // const signup = async (username: string, email: string, password: string) => {
+  //   const response = await axios.post(
+  //     `${process.env.REACT_APP_API_URL}/api/auth/register`,
+  //     { username, email, password }
+  //   );
+  //   const { token } = response.data;
+  //   localStorage.setItem("token", token);
+  //   const decoded = jwtDecode<User>(token);
+  //   setUser(decoded);
+  // };
 
   const logout = () => {
     localStorage.removeItem("token");
