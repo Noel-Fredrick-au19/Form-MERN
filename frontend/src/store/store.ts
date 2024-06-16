@@ -39,7 +39,7 @@ const useStore = create<Store>((set) => ({
       });
 
     } catch (error) {
-      toast.error("Failed to fetch items");
+      toast.error("Failed to fetch items.");
     } finally {
       set({ loading: false });
     }
@@ -58,9 +58,9 @@ const useStore = create<Store>((set) => ({
         { name, description }
       );
       set((state) => ({ items: [...state.items, response.data] }));
-      toast.success("Item added successfully");
+      toast.success("Item added successfully.");
     } catch (error) {
-      toast.error("Failed to add item");
+      toast.error("Failed to add item.");
     } finally {
       set({ loading: false });
     }
@@ -83,9 +83,9 @@ const useStore = create<Store>((set) => ({
           item._id === id ? response.data : item
         ),
       }));
-      toast.success("Item updated successfully");
+      toast.success("Item updated successfully.");
     } catch (error) {
-      toast.error("Failed to update item");
+      toast.error("Failed to update item.");
     } finally {
       set({ loading: false });
     }
@@ -103,9 +103,9 @@ const useStore = create<Store>((set) => ({
       set((state) => ({
         items: state.items.filter((item) => item._id !== id),
       }));
-      toast.success("Item deleted successfully");
+      toast.success("Item deleted successfully.");
     } catch (error) {
-      toast.error("Failed to delete item");
+      toast.error("Failed to delete item.");
     } finally {
       set({ loading: false });
     }
@@ -123,9 +123,9 @@ const useStore = create<Store>((set) => ({
         orderedItems,
       });
       set({ items: orderedItems });
-      toast.success("Order updated successfully");
+      toast.success("Order updated successfully.");
     } catch (error) {
-      toast.error("Failed to update order");
+      toast.error("Failed to update order.");
     } finally {
       set({ loading: false });
     }
