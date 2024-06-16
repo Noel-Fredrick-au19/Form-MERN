@@ -2,6 +2,10 @@
 
 This project is a MERN stack application that implements CRUD (Create, Read, Update, Delete) operations with drag-and-drop functionality. It includes user authentication and authorization using JWT tokens.
 
+### Deployed Link (Vercel)
+`https://form-mern-frontend.vercel.app/login`
+`https://form-mern-frontend.vercel.app/signup`
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
