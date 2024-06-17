@@ -8,6 +8,14 @@ import React, {
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
+import {
+  AUTHPROVIDER,
+  EMAILIDNOTREGISTERED,
+  ERROROCCURED,
+  LOGGEDOUTSUCCESS,
+  SIGNUPSUCCESS,
+  USERNAMEORPASSWORDINCORRECT,
+} from "../constants/constant";
 
 interface User {
   _id: string;
@@ -27,7 +35,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider.");
+    throw new Error(AUTHPROVIDER);
   }
   return context;
 };
@@ -66,11 +74,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       toast.success("Login successful!");
     } catch (error: any) {
       if (error.response && error.response.status === 404) {
-        toast.error("Email ID is not registered in the database.");
+        toast.error(EMAILIDNOTREGISTERED);
       } else if (error.response && error.response.status === 401) {
-        toast.error("Username or password entered is incorrect.");
+        toast.error(USERNAMEORPASSWORDINCORRECT);
       } else {
-        toast.error("An error occurred. Please try again.");
+        toast.error(ERROROCCURED);
       }
     }
   };
@@ -91,16 +99,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem("token", token);
       const decoded = jwtDecode<User>(token);
       setUser(decoded);
-      toast.success("Signup successful!");
+      toast.success(SIGNUPSUCCESS);
     } catch (error: any) {
-      toast.error("An error occurred during signup. Please try again.");
+      toast.error(ERROROCCURED);
     }
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-    toast.info("Logged out successfully.");
+    toast.info(LOGGEDOUTSUCCESS);
   };
   return (
     <AuthContext.Provider value={{ user, login, signup, logout }}>

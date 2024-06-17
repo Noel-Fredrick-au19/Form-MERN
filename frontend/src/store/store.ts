@@ -1,6 +1,17 @@
 import create from "zustand";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {
+  FAILEDTOADD,
+  FAILEDTODELETE,
+  FAILEDTOFETCH,
+  FAILEDTOUPDATE,
+  FAILEUPDATEORDER,
+  ITEMADDEDSUCCESS,
+  ITEMDELETESUCCESS,
+  ITEMUPDATESUCCESS,
+  ORDERUPDATE,
+} from "../constants/constant";
 
 interface Item {
   order: any;
@@ -37,9 +48,8 @@ const useStore = create<Store>((set) => ({
       set({
         items: response.data.sort((a: Item, b: Item) => a.order - b.order),
       });
-
     } catch (error) {
-      toast.error("Failed to fetch items.");
+      toast.error(FAILEDTOFETCH);
     } finally {
       set({ loading: false });
     }
@@ -58,9 +68,9 @@ const useStore = create<Store>((set) => ({
         { name, description }
       );
       set((state) => ({ items: [...state.items, response.data] }));
-      toast.success("Item added successfully.");
+      toast.success(ITEMADDEDSUCCESS);
     } catch (error) {
-      toast.error("Failed to add item.");
+      toast.error(FAILEDTOADD);
     } finally {
       set({ loading: false });
     }
@@ -83,9 +93,9 @@ const useStore = create<Store>((set) => ({
           item._id === id ? response.data : item
         ),
       }));
-      toast.success("Item updated successfully.");
+      toast.success(ITEMUPDATESUCCESS);
     } catch (error) {
-      toast.error("Failed to update item.");
+      toast.error(FAILEDTOUPDATE);
     } finally {
       set({ loading: false });
     }
@@ -103,9 +113,9 @@ const useStore = create<Store>((set) => ({
       set((state) => ({
         items: state.items.filter((item) => item._id !== id),
       }));
-      toast.success("Item deleted successfully.");
+      toast.success(ITEMDELETESUCCESS);
     } catch (error) {
-      toast.error("Failed to delete item.");
+      toast.error(FAILEDTODELETE);
     } finally {
       set({ loading: false });
     }
@@ -123,9 +133,9 @@ const useStore = create<Store>((set) => ({
         orderedItems,
       });
       set({ items: orderedItems });
-      toast.success("Order updated successfully.");
+      toast.success(ORDERUPDATE);
     } catch (error) {
-      toast.error("Failed to update order.");
+      toast.error(FAILEUPDATEORDER);
     } finally {
       set({ loading: false });
     }
